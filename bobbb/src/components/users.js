@@ -8,7 +8,7 @@ const ShowUsers = () => {
   const [users, setUsers] = useState([])
   const fetchUsers = () => {
 	
-	fetch('http://localhost:8000/users')
+	fetch('http://77.124.22.61:8000/users')
 	.then(response => response.json())
 	.then(data => {setUsers(data.user);
 })
@@ -62,7 +62,7 @@ export const User = () => {
 			headers: { 'Content-Type': 'application/json' ,
 			'Authorization': 'Bearer ' + token},
 			};
-			let url= 'http://localhost:8000/users/'+storedUserId;
+			let url= 'http://77.124.22.61:8000/users/'+storedUserId;
 			console.log(url);
 			console.log(url);
 			console.log(url);
@@ -145,7 +145,7 @@ const JoinTeam = (props)=>
 			  headers: { 'Content-Type': 'application/json' },
 			  body: JSON.stringify({ teamPassword: teamPassword, userName: userName, userId: userId })
 			  };
-		  let url= "http://www.localhost:8000/teams/join";
+		  let url= "http://www.77.124.22.61:8000/teams/join";
 		  fetch(url, requestOptions)
 		  .then(response => response.json())
 		  .then(data => {
@@ -196,7 +196,7 @@ const CreateTeam = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ teamName: newTeam, userName: userName, userId: userId })
 			};
-			let url= "http://www.localhost:8000/teams/createTeam";
+			let url= "http://www.77.124.22.61:8000/teams/createTeam";
 			fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(data => {
@@ -240,7 +240,7 @@ const AddFriend = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ friendUserName: friendUserName, userName: userName, userId: userId })
 			};
-			let url= "http://www.localhost:8000/users/addFriend";
+			let url= "http://www.77.124.22.61:8000/users/addFriend";
 			fetch(url, requestOptions)
 			.then(response => {
 				console.log(response);
@@ -290,7 +290,7 @@ const ShowTeam = (props) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ teamId: teamId, userId: userId})
 		};
-	let url= "http://localhost:8000/teams/deleteUser";
+	let url= "http://77.124.22.61:8000/teams/deleteUser";
 	fetch(url, requestOptions)
 	.then(response => response.json())
 	.then(data => {
@@ -311,7 +311,7 @@ const ShowTeam = (props) => {
 		}
 		// Fetch the team data when the component mounts
 		Promise.all(
-		data.map((team) => fetch(`http://localhost:8000/teams/${team}`).then((res) => res.json()))
+		data.map((team) => fetch(`http://77.124.22.61:8000/teams/${team}`).then((res) => res.json()))
 		).then((data) => {
 			setUserId(localStorage.getItem('userId'));
 		setTeams(data);

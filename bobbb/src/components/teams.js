@@ -7,7 +7,7 @@ export const ShowTeams = () => {
 	const [teams, setTeams] = useState([])
 	
 	const fetchTeams = () => {
-	  fetch('http://localhost:8000/teams')
+	  fetch('http://77.124.22.61:8000/teams')
 	  .then(response => response.json())
 	  .then(data => {setTeams(data.teams.team);
 		//console.log(data.teams.team);
@@ -54,7 +54,7 @@ export const Team = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify()
 		};
-	let url= `http://localhost:8000/teams/${teamId}`;
+	let url= `http://77.124.22.61:8000/teams/${teamId}`;
 	//console.log(url);
 	
 	fetch(url, requestOptions)
@@ -145,7 +145,7 @@ const CreateEvent = (props)=>
 					teamId:teamId
 				})
 			};
-			let url= "http://www.localhost:8000/events/createEvent";
+			let url= "http://www.77.124.22.61:8000/events/createEvent";
 			fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(data => {

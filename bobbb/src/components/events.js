@@ -6,7 +6,7 @@ import { Routes, Route, useParams } from 'react-router-dom';
 		const [events, setEvents] = useState([]);
 		
 		const fetchEvents = () => {
-		fetch('http://localhost:8000/events')
+		fetch('http://77.124.22.61:8000/events')
 		.then(response => response.json())
 		.then(data => {
 			setEvents(data.event);
@@ -67,7 +67,7 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify()
 		};
-		let url= `http://localhost:8000/events/${eventId}`;
+		let url= `http://77.124.22.61:8000/events/${eventId}`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -99,7 +99,7 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
-		let url= `http://localhost:8000/events/RSVP`;
+		let url= `http://77.124.22.61:8000/events/RSVP`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -122,7 +122,7 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
-		let url= `http://localhost:8000/events/addToCallander`;
+		let url= `http://77.124.22.61:8000/events/addToCallander`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)

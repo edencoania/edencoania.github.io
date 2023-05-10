@@ -78,7 +78,7 @@ function Login({funcsetUserStatus})
 		const { userName, password } = event.target.elements;
 		const data = { "userName": userName.value, "password": password.value };
 
-		const url = 'http://www.localhost:8000/login/try'
+		const url = 'http://www.77.124.22.61:8000/login/try'
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -147,7 +147,7 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = 'http://www.localhost:8000/signup/try'
+			const url = 'http://www.77.124.22.61:80000/signup/try'
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
