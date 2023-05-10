@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -24,14 +25,56 @@
   color: white;
 }
 
+.div {
+  flex-basis: 400px;
+}
+
 .App-link {
-  color: #61dafb;
+  color: black;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+
+  /* center horizontally and vertically */
+}
+
+.item {
+  display: flex;
+
+}
+
+.my-component {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+}
+
+button {
+  background-color: rgb(196, 221, 158);
+  /* Green */
+  border: none;
+  color: black;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
