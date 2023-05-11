@@ -147,7 +147,7 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = 'http://77.124.22.61:80000/signup/try'
+			const url = 'http://77.124.22.61:8000/signup/try'
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
