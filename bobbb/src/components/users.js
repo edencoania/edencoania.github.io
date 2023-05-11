@@ -145,7 +145,7 @@ const JoinTeam = (props)=>
 			  headers: { 'Content-Type': 'application/json' },
 			  body: JSON.stringify({ teamPassword: teamPassword, userName: userName, userId: userId })
 			  };
-		  let url= "http://www.77.124.22.61:8000/teams/join";
+		  let url= "http://77.124.22.61:8000/teams/join";
 		  fetch(url, requestOptions)
 		  .then(response => response.json())
 		  .then(data => {
@@ -196,7 +196,7 @@ const CreateTeam = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ teamName: newTeam, userName: userName, userId: userId })
 			};
-			let url= "http://www.77.124.22.61:8000/teams/createTeam";
+			let url= "http://77.124.22.61:8000/teams/createTeam";
 			fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(data => {
@@ -240,7 +240,7 @@ const AddFriend = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ friendUserName: friendUserName, userName: userName, userId: userId })
 			};
-			let url= "http://www.77.124.22.61:8000/users/addFriend";
+			let url= "http://77.124.22.61:8000/users/addFriend";
 			fetch(url, requestOptions)
 			.then(response => {
 				console.log(response);

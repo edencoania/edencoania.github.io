@@ -145,7 +145,7 @@ const CreateEvent = (props)=>
 					teamId:teamId
 				})
 			};
-			let url= "http://www.77.124.22.61:8000/events/createEvent";
+			let url= "http://77.124.22.61:8000/events/createEvent";
 			fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(data => {
