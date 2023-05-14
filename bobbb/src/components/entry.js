@@ -17,13 +17,28 @@ function MannageEntry()
         if(userStatus !== "Login" && userStatus !== "Signup") {
             localStorage.setItem('isLoggedIn', 'true');
 			//localStorage.setItem('tokken', tokken);
-
             localStorage.setItem('userId',userStatus.id );
             localStorage.setItem('userName',userStatus.username );
             navigate(`/users/${userStatus.id}`);
         }
     }, [userStatus]);
 	let show;
+	function handle()
+	{
+		const url = 'https://express-hello-world-ok4t.onrender.com/users/log';
+		//const url = 'https://localhost/users/log';
+
+		const requestOptions = {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify()
+		};
+		fetch(url, requestOptions)
+			.then(response => response.json()).then(data => {
+				alert(data.message);
+			})
+			.catch(error => console.log(error))
+	  };
 
 	if(userStatus==="Login")
 	{
@@ -50,6 +65,7 @@ function MannageEntry()
 	}
 	return (<div>
 	<Navigation/>
+	<button  onClick={() =>handle()}> hey </button>
 	{
 		show
 	}
