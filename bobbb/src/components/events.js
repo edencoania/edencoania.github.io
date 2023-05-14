@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { render } from "react-dom";
 import { Routes, Route, useParams } from 'react-router-dom';
-
+import '../App.css';
 export const ShowEvents = () => {
 		const [events, setEvents] = useState([]);
 		
@@ -20,7 +20,7 @@ export const ShowEvents = () => {
 		}, []);
 		
 		return (
-			<div className="my-component" style={{"width":"1100px"}}>
+			<div className="my-Events">
 			{events.length > 0 && (
 				<ol  >
 					
@@ -147,7 +147,7 @@ export const Event = () => {
 	};
 
 	if (show) {return (
-		<div>
+		<div className="my-Events">
 			<li>{"event id----"+event.id}</li>
 			<li>{"event name----"+event.name}</li>
 			<li>{"event password----"+event.time}</li>

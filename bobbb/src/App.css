@@ -465,3 +465,121 @@ a {
   color: blue;
   cursor: pointer;
 }
+
+
+/* styles for ShowEvents component */
+.my-Events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.my-Events li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.my-Events li ul {
+  margin: 0;
+  padding: 0;
+}
+
+.my-Events li ul li {
+  list-style-type: none;
+}
+
+.my-Events li ul li div {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.my-Events li ul li div p {
+  margin: 0;
+}
+
+/* styles for Event component */
+.event-details {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.event-details ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.event-details ul li {
+  margin-bottom: 20px;
+}
+
+.event-details ul li button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.event-details ul li button:hover {
+  background-color: #0069d9;
+}
+
+.event-details ul li button:active {
+  background-color: #0062cc;
+}
+
+.event-details ul li button:focus {
+  outline: none;
+}
+
+.event-details ul li div {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.event-details ul li div p {
+  margin: 0;
+}
+
+.event-details ul li div button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.event-details ul li div button:hover {
+  background-color: #0069d9;
+}
+
+.event-details ul li div button:active {
+  background-color: #0062cc;
+}
+
+.event-details ul li div button:focus {
+  outline: none;
+}
