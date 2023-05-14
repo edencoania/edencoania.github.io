@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Navigation from './nav';
 import '../App.css';
 
 function About() {
 	return (
 	  <div className='container'>
+			<Navigation/>
+
 		<h1>About Friends Groups and Creating Events</h1>
 		<p>
 		  Our app is designed to make it easy for you to create and manage events

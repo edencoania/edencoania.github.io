@@ -29,9 +29,7 @@ function MannageEntry()
 	{
 		show = <div className="signin">
 			
-			<Login funcsetUserStatus={setUserStatus} />
-			<script src="http://apis.google.com/js/platform.js" async defer></script>
-			
+			<Login funcsetUserStatus={setUserStatus} />			
 			</div>
 	}
 	else if(userStatus==="Signup")

@@ -1,8 +1,11 @@
 import React from 'react';
+import Navigation from './nav';
 
 function Contact() {
   return (
     <div className='contact'>
+      <Navigation/>
+
       <h2>Contact</h2>
       <p>
         Email: <a href="mailto:edencoania@gmail.com">edencoania@gmail.com</a>
