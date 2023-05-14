@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
-
+import Navigation from "./nav";
 import { useEffect , useState } from "react";
 
 
@@ -27,16 +27,16 @@ function MannageEntry()
 
 	if(userStatus==="Login")
 	{
-		show = <div className="my-component">
+		show = <div className="signin">
 			
 			<Login funcsetUserStatus={setUserStatus} />
-			<script src="https://apis.google.com/js/platform.js" async defer></script>
+			<script src="http://apis.google.com/js/platform.js" async defer></script>
 			
 			</div>
 	}
 	else if(userStatus==="Signup")
 	{
-		show =<Signup funcsetUserStatus={setUserStatus} />
+		show =<Signup   funcsetUserStatus={setUserStatus} />
 	}
 	else
 	{
@@ -51,7 +51,10 @@ function MannageEntry()
 		//navigate(`/users/${userStatus.id}`);
 	}
 	return (<div>
-	{show}
+	<Navigation/>
+	{
+		show
+	}
 	</div>);
 }
 
@@ -78,7 +81,7 @@ function Login({funcsetUserStatus})
 		const { userName, password } = event.target.elements;
 		const data = { "userName": userName.value, "password": password.value };
 
-		const url = 'https://77.124.22.61:8000/login/try'
+		const url = 'http://localhost:8000/login/try'
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -104,18 +107,18 @@ function Login({funcsetUserStatus})
 			.catch(error => console.log('Form submit error', error))
 	  };
 	  
-	return <div style={{flex: 1 ,flexbasis:"1000px",padding:"20px", margin: "5px 350px","border": "2px solid black"}}>
-		<h2>welcome to my-app</h2>
+	return <div>
+		<h2>Welcome to my-app</h2>
 		<form onSubmit={handleSubmitLogin}>
-		<p style={{width: "96px"}}> date with friends and play soccer </p>
-		<label htmlFor="userName">Enter your username: </label><br/><br/>
-		<input type="text" value={userName} onChange={handleChangeUserName} name="userName" /><br/><br/>
-		<label htmlFor="password">Enter your password: </label><br/><br/>
-		<input type="password" value={password} onChange={handleChangePassword} name="password" /><br/><br/>
+		<p> Date with friends and play soccer </p>
+		<label htmlFor="userName">Enter your username: </label>    
+		<input type="text" value={userName} onChange={handleChangeUserName} name="userName" />    
+		<label htmlFor="password">Enter your password: </label>    
+		<input type="password" value={password} onChange={handleChangePassword} name="password" />    
 
-	<input type="submit"  value="sign-in" style={{backgroundColor:"Chartreuse"}} /><br/><br/>
+	<input type="submit"  value="sign-in" />    
 	</form >
-	<a style={{color:"black"}} onClick={()=>setToSignup(funcsetUserStatus)}> don't have acount ? </a>
+	<a onClick={()=>setToSignup(funcsetUserStatus)}> don't have acount ? </a>
 
 	</div>
 }
@@ -147,7 +150,7 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = 'https://77.124.22.61:8000/signup/try'
+			const url = 'http://localhost:8000/signup/try'
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -172,23 +175,23 @@ function Signup({funcsetUserStatus})
 			})
 			.catch(error => console.log('Form submit error', error))
 		  };
-	return <div style={{flex: 1,flexbasis:"400px",padding:"20px", margin: "5px 350px","border": "2px solid black"}}>
-	<h2>welcome to sign-up</h2>
+	return <div className="Signup">
+	<h2 className="signup h2">welcome to sign-up</h2>
 	<form onSubmit={handleSubmitSignup}>
-	<label htmlFor="Name">Enter your Name: </label><br/><br/>
-	<input type="text" value={Name} name="Name" onChange={handleChangeName} /><br/><br/>
+	<label htmlFor="Name">Enter your Name: </label>    
+	<input type="text" value={Name} name="Name" onChange={handleChangeName} />    
 
 
-	<label htmlFor="userName">Enter your username: </label><br/><br/>
-	<input type="text" value={userName} name="userName" onChange={handleChangeUserName} /><br/><br/>
+	<label htmlFor="userName">Enter your username: </label>
+	<input type="text" value={userName} name="userName" onChange={handleChangeUserName} />
 
 
-	<label htmlFor="password">Enter your password: </label><br/><br/>
-	<input type="password" value={password} name="password" onChange={handleChangePassword} /><br/><br/>
+	<label htmlFor="password">Enter your password: </label>
+	<input type="password" value={password} name="password" onChange={handleChangePassword} />
 
 
-	<input type="submit" style={{backgroundColor:"Chartreuse"}} value="sign-up"  /><br/><br/>
-	<a style={{color:"black"}} onClick={()=>setToLogin(funcsetUserStatus)}> have acount ? </a>
+	<input type="submit" value="sign-up" className="signup button" />
+	<a onClick={()=>setToLogin(funcsetUserStatus)}> have acount ? </a>
 	</form>
 	</div>
 }

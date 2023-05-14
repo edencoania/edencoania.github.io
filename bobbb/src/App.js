@@ -6,6 +6,7 @@ import ShowUsers from './components/users';
 import {ShowTeams,Team} from './components/teams';
 import { ShowEvents,Event } from './components/events';
 import { User } from './components/users';
+import Navigation from './components/nav';
 import './App.css';
 
 //import Users from './components/users';
@@ -23,6 +24,7 @@ function App() {
     <Route path="/events/:eventId" element={<Event/>}/>
   </Routes>
 </BrowserRouter>
+
 </div>
   );
 }

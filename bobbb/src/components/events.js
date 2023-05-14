@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react"
 import { render } from "react-dom";
 import { Routes, Route, useParams } from 'react-router-dom';
 
-	export const ShowEvents = () => {
+export const ShowEvents = () => {
 		const [events, setEvents] = useState([]);
 		
 		const fetchEvents = () => {
-		fetch('http://77.124.22.61:8000/events')
+		fetch('http://localhost:8000/events')
 		.then(response => response.json())
 		.then(data => {
 			setEvents(data.event);
@@ -27,7 +27,7 @@ import { Routes, Route, useParams } from 'react-router-dom';
 				{events.map(event => (
 					<li key={event.id}>
 						
-					<ul  style ={{"width":"600px" ,"listStyle":"none",  "borderStyle": "dashed" }}> 
+					<ul> 
 					<div>
 						<li>{"event id----"+event.id}</li>
 						<li>{"event name----"+event.name}</li>
@@ -49,7 +49,7 @@ import { Routes, Route, useParams } from 'react-router-dom';
 				)}
 			</div>
 		)
-		}
+}
 	
 export const Event = () => {
 	const [event, setEvent] = useState([])
@@ -67,7 +67,7 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify()
 		};
-		let url= `http://77.124.22.61:8000/events/${eventId}`;
+		let url= `http://localhost:8000/events/${eventId}`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -99,7 +99,7 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
-		let url= `http://77.124.22.61:8000/events/RSVP`;
+		let url= `http://localhost:8000/events/RSVP`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -122,7 +122,7 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
-		let url= `http://77.124.22.61:8000/events/addToCallander`;
+		let url= `http://localhost:8000/events/addToCallander`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -147,7 +147,7 @@ export const Event = () => {
 	};
 
 	if (show) {return (
-		<div  className="my-component" style={{flex: 1,"border":"dotted","width":"600px"}}>
+		<div>
 			<li>{"event id----"+event.id}</li>
 			<li>{"event name----"+event.name}</li>
 			<li>{"event password----"+event.time}</li>

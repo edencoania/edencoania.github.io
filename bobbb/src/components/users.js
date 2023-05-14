@@ -2,13 +2,14 @@ import React, { useEffect, useState,useRef } from "react";
 import { render } from "react-dom";
 import { Routes, Route, useParams,useNavigate } from "react-router-dom";
 import '../App.css';
+import Navigation from "./nav";
 
 
 const ShowUsers = () => {
   const [users, setUsers] = useState([])
   const fetchUsers = () => {
 	
-	fetch('http://77.124.22.61:8000/users')
+	fetch('http://localhost:8000/users')
 	.then(response => response.json())
 	.then(data => {setUsers(data.user);
 })
@@ -30,7 +31,7 @@ const listStyle = {
           {users.map(user => (
             <li key={user.id}>
 				
-			<ul  style ={{ height: "100%",width:"100%" ,"listStyle":"none",  "borderStyle": "dashed" }}> 
+			<ul> 
 			<div>
 				<li>{"user name----"+user.Name}</li>
 				<li>{"userName----"+user.userName}</li>
@@ -62,7 +63,7 @@ export const User = () => {
 			headers: { 'Content-Type': 'application/json' ,
 			'Authorization': 'Bearer ' + token},
 			};
-			let url= 'http://77.124.22.61:8000/users/'+storedUserId;
+			let url= 'http://localhost:8000/users/'+storedUserId;
 			console.log(url);
 			console.log(url);
 			console.log(url);
@@ -90,12 +91,14 @@ export const User = () => {
 		{
 		//	<h1> tried to access wrong page	</h1>
 		}
+			<Navigation/>
 			<UserData data={user}/>
 	 </div>
 	)}
 	else{
 		return (
 			<div  className="my-component">	
+			<Navigation/>
 			<UserData  fetchUser={fetchUser} data={user} />
 			 </div>
 			)
@@ -106,7 +109,7 @@ const UserData = ({ fetchUser,data }) => {
 	const myData = data;
 	
 	return (
-	  <div className="my-component" style ={{"padding":"50px",flexBasis:"300px","borderColor": '#black' , "borderStyle": "dashed"}}>
+	  <div className="user-container">
 		<h2>User Data:</h2>
 		<p>ID: {data.id}</p>
 		<p>Name: {data.Name}</p>
@@ -145,7 +148,7 @@ const JoinTeam = (props)=>
 			  headers: { 'Content-Type': 'application/json' },
 			  body: JSON.stringify({ teamPassword: teamPassword, userName: userName, userId: userId })
 			  };
-		  let url= "http://77.124.22.61:8000/teams/join";
+		  let url= "http://localhost:8000/teams/join";
 		  fetch(url, requestOptions)
 		  .then(response => response.json())
 		  .then(data => {
@@ -196,7 +199,7 @@ const CreateTeam = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ teamName: newTeam, userName: userName, userId: userId })
 			};
-			let url= "http://77.124.22.61:8000/teams/createTeam";
+			let url= "http://localhost:8000/teams/createTeam";
 			fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(data => {
@@ -240,7 +243,7 @@ const AddFriend = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ friendUserName: friendUserName, userName: userName, userId: userId })
 			};
-			let url= "http://77.124.22.61:8000/users/addFriend";
+			let url= "http://localhost:8000/users/addFriend";
 			fetch(url, requestOptions)
 			.then(response => {
 				console.log(response);
@@ -290,7 +293,7 @@ const ShowTeam = (props) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ teamId: teamId, userId: userId})
 		};
-	let url= "http://77.124.22.61:8000/teams/deleteUser";
+	let url= "http://localhost:8000/teams/deleteUser";
 	fetch(url, requestOptions)
 	.then(response => response.json())
 	.then(data => {
@@ -311,7 +314,7 @@ const ShowTeam = (props) => {
 		}
 		// Fetch the team data when the component mounts
 		Promise.all(
-		data.map((team) => fetch(`http://77.124.22.61:8000/teams/${team}`).then((res) => res.json()))
+		data.map((team) => fetch(`http://localhost:8000/teams/${team}`).then((res) => res.json()))
 		).then((data) => {
 			setUserId(localStorage.getItem('userId'));
 		setTeams(data);
@@ -328,9 +331,9 @@ const ShowTeam = (props) => {
     return null;
   }
   return (
-    <div style={{flex: 1 , flexBasis:"100px"}}  className="item">
+    <div >
       {teams.map((team) => (
-      <div key={team.team.id}  style={{padding:"20px","border":"dotted"}}  >
+      <div   className="teams-inUsers" key={team.team.id} >
 	  <div onClick={()=>goToTeams(team.team.id)}>
 	  <h4>team name - {team.team.name}</h4>
 	  <p>team id - {team.team.id}</p>
@@ -353,12 +356,7 @@ const ShowArray = (props) => {
 		return (
 			<ul>
 			{data.map((item, index) => (
-			  <li style={{"cursor": "pointer", 
-				"padding": "10",
-				"border": "1px solid #ccc",
-				"borderRadius": "5",
-				"marginBottom": "5"
-			  }}  key={index}>{item}</li>
+			  <li  key={index}>{item}</li>
 			))}
 		  </ul>
 		)
@@ -378,12 +376,7 @@ const ShowEvents = (props) => {
 		return (
 			<ul>
 			{data.map((item, index) => (
-			  <li style={{"cursor": "pointer", 
-				"padding": "10",
-				"border": "1px solid #ccc",
-				"borderRadius": "5",
-				"marginBottom": "5"
-			  }} onClick={()=>goToEvents(item)} key={index}>{item}</li>
+			  <li onClick={()=>goToEvents(item)} key={index}>{item}</li>
 			))}
 		  </ul>
 		)
