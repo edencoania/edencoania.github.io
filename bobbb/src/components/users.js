@@ -328,7 +328,7 @@ const ShowTeam = (props) => {
 			setUserId(localStorage.getItem('userId'));
 			setTeams(data);
 		  });
-		  
+		})
 
   function goToTeams(teamId)
   {
