@@ -6,7 +6,9 @@ export const ShowEvents = () => {
 		const [events, setEvents] = useState([]);
 		
 		const fetchEvents = () => {
-		fetch('http://localhost:8000/events')
+			const url = 'https://express-hello-world-ok4t.onrender.com/events';
+			//url = 'https://express-hello-world-ok4t.onrender.com/events'
+		fetch(url)
 		.then(response => response.json())
 		.then(data => {
 			setEvents(data.event);
@@ -67,7 +69,9 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify()
 		};
-		let url= `http://localhost:8000/events/${eventId}`;
+		
+		const url = 'https://express-hello-world-ok4t.onrender.com/events/${eventId}';
+		//let url= `http://localhost:8000/events/${eventId}`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -99,7 +103,9 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
-		let url= `http://localhost:8000/events/RSVP`;
+		
+		const url = 'https://express-hello-world-ok4t.onrender.com/events/RSVP';
+		//let url= `http://localhost:8000/events/RSVP`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -122,7 +128,10 @@ export const Event = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
-		let url= `http://localhost:8000/events/addToCallander`;
+		
+		
+		const url = 'https://express-hello-world-ok4t.onrender.com/events/addToCallander';
+		//let url= `http://localhost:8000/events/addToCallander`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)

@@ -26,7 +26,7 @@ function MannageEntry()
 	function handle()
 	{
 		const url = 'https://express-hello-world-ok4t.onrender.com/users/log';
-		//const url = 'https://localhost/users/log';
+		//const url = 'https://localhost:8000/users/log';
 
 		const requestOptions = {
 			method: 'GET',
@@ -94,8 +94,8 @@ function Login({funcsetUserStatus})
 		
 		const { userName, password } = event.target.elements;
 		const data = { "userName": userName.value, "password": password.value };
-
-		const url = 'http://localhost:8000/login/try'
+		const url = 'https://express-hello-world-ok4t.onrender.com/login/try';
+		//const url = 'http://localhost:8000/login/try'
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -164,7 +164,8 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = 'http://localhost:8000/signup/try'
+		/	  const url = 'https://express-hello-world-ok4t.onrender.com/signup/try';
+		/const url = 'http://localhost:8000/signup/try'
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },

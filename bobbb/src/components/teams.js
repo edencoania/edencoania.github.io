@@ -11,7 +11,9 @@ export const ShowTeams = () => {
   const [error, setError] = useState(null);
 
   const fetchTeams = () => {
-    fetch('http://localhost:8000/teams')
+	const url = 'https://express-hello-world-ok4t.onrender.com/teams';
+		//const url =http://localhost:8000/teams'
+    fetch(url)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -168,8 +170,8 @@ function TeamEvents({ events }) {
 		  teamId: teamId
 		})
 	  };
-  
-	  let url= "http://localhost:8000/events/createEvent";
+	  const url = 'https://express-hello-world-ok4t.onrender.com/teams/createEvent';
+	  //let url= "http://localhost:8000/events/createEvent";
 	  fetch(url, requestOptions)
 		.then(response => {
 		  if (!response.ok) {
