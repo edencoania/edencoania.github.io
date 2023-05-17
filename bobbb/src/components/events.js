@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { render } from "react-dom";
-import { Routes, Route, useParams } from 'react-router-dom';
 import '../App.css';
 export const ShowEvents = () => {
 		const [events, setEvents] = useState([]);
