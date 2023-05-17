@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
+import { useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
+import { BASE_URL } from "../config";
+
 export const ShowEvents = () => {
 		const [events, setEvents] = useState([]);
 		
 		const fetchEvents = () => {
-			const url = 'https://express-hello-world-ok4t.onrender.com/events';
-			//url = 'https://express-hello-world-ok4t.onrender.com/events'
+			const url = `${BASE_URL}/events`;
 		fetch(url)
 		.then(response => response.json())
 		.then(data => {
@@ -68,7 +70,7 @@ export const Event = () => {
 			body: JSON.stringify()
 		};
 		
-		const url = 'https://express-hello-world-ok4t.onrender.com/events/${eventId}';
+		const url = `${BASE_URL}/events/${eventId}`;
 		//let url= `http://localhost:8000/events/${eventId}`;
 		//console.log(url);
 		
@@ -102,7 +104,7 @@ export const Event = () => {
 			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
 		};
 		
-		const url = 'https://express-hello-world-ok4t.onrender.com/events/RSVP';
+		const url = `${BASE_URL}/events/RSVP`;
 		//let url= `http://localhost:8000/events/RSVP`;
 		//console.log(url);
 		
@@ -128,7 +130,7 @@ export const Event = () => {
 		};
 		
 		
-		const url = 'https://express-hello-world-ok4t.onrender.com/events/addToCallander';
+		const url = `${BASE_URL}/events/addToCallander`;
 		//let url= `http://localhost:8000/events/addToCallander`;
 		//console.log(url);
 		

@@ -1,19 +1,19 @@
 import React, { useEffect, useState,useRef } from "react";
-import { render } from "react-dom";
-import { Routes, Route, useParams,useNavigate } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import '../App.css';
 import Navigation from "./nav";
+import { BASE_URL } from "../config";
 
-
-const ShowUsers = () => {
+const ShowUsers = () => 
+{
   const [users, setUsers] = useState([])
   const fetchUsers = () => {
-	const url = 'https://express-hello-world-ok4t.onrender.com/users';
+	const url = `${BASE_URL}/users`;
 	  //const url ='http://localhost:8000/users'
 	fetch(url)
 	.then(response => response.json())
 	.then(data => {setUsers(data.user);
-})
+	})
 	.catch(error => console.error(error));
   }
 
@@ -64,7 +64,7 @@ export const User = () => {
 			headers: { 'Content-Type': 'application/json' ,
 			'Authorization': 'Bearer ' + token},
 			};
-			const url = 'https://express-hello-world-ok4t.onrender.com/users/'+storedUserId;
+			const url = `${BASE_URL}/users/`+storedUserId;
 	  //let url= 'http://localhost:8000/users/'+storedUserId;
 			console.log(url);
 			console.log(url);
@@ -150,7 +150,7 @@ const JoinTeam = (props)=>
 			  headers: { 'Content-Type': 'application/json' },
 			  body: JSON.stringify({ teamPassword: teamPassword, userName: userName, userId: userId })
 			  };
-			  const url = 'https://express-hello-world-ok4t.onrender.com/teams/join';
+			  const url = `${BASE_URL}/teams/join`;
 			  //let url= "http://localhost:8000/teams/join";
 		  fetch(url, requestOptions)
 		  .then(response => response.json())
@@ -202,7 +202,7 @@ const CreateTeam = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ teamName: newTeam, userName: userName, userId: userId })
 			};
-			const url = 'https://express-hello-world-ok4t.onrender.com/teams/createTeam';
+			const url = `${BASE_URL}/teams/createTeam`;
 			  //let url= "http://localhost:8000/teams/createTeam";
 			fetch(url, requestOptions)
 			.then(response => response.json())
@@ -247,7 +247,7 @@ const AddFriend = (props)=>
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ friendUserName: friendUserName, userName: userName, userId: userId })
 			};
-			const url = 'https://express-hello-world-ok4t.onrender.com/users/addFriend';
+			const url = `${BASE_URL}/users/addFriend`;
 			  //let url= "http://localhost:8000/users/addFriend";
 			fetch(url, requestOptions)
 			.then(response => {
@@ -298,7 +298,7 @@ const ShowTeam = (props) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ teamId: teamId, userId: userId})
 		};
-		const url = 'https://express-hello-world-ok4t.onrender.com/teams/deleteUser';
+		const url = `${BASE_URL}/teams/deleteUser`;
 		//let url= "http://localhost:8000/teams/deleteUser";
 	fetch(url, requestOptions)
 	.then(response => response.json())
@@ -321,7 +321,7 @@ const ShowTeam = (props) => {
 		// Fetch the team data when the component mounts
 		Promise.all(
 			data.map((team) => {
-			  const url = `https://express-hello-world-ok4t.onrender.com/teams/${team}`;
+			  const url = `${BASE_URL}/teams/${team}`;
 			  return fetch(url).then((res) => res.json());
 			})
 		  ).then((data) => {

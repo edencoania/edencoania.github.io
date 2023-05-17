@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import Navigation from "./nav";
 import { useEffect , useState } from "react";
+import { BASE_URL } from "../config";
 
 
 
@@ -25,7 +26,7 @@ function MannageEntry()
 	let show;
 	function handle()
 	{
-		const url = 'https://express-hello-world-ok4t.onrender.com/users/log';
+		const url = `${BASE_URL}/users/log`;
 		//const url = 'https://localhost:8000/users/log';
 
 		const requestOptions = {
@@ -94,7 +95,7 @@ function Login({funcsetUserStatus})
 		
 		const { userName, password } = event.target.elements;
 		const data = { "userName": userName.value, "password": password.value };
-		const url = 'https://express-hello-world-ok4t.onrender.com/login/try';
+		const url = `${BASE_URL}/login/try`;
 		//const url = 'http://localhost:8000/login/try'
 		const requestOptions = {
 			method: 'POST',
@@ -164,7 +165,7 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = 'https://express-hello-world-ok4t.onrender.com/signup/try';
+			const url = `${BASE_URL}/signup/try`;
 		//const url = 'http://localhost:8000/signup/try'
 		//app.post("/signup/try", async (req, res) => {
 

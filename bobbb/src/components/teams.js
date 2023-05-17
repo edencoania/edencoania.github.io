@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { render } from "react-dom";
-import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {DateTimePicker} from './utils componnents';
 import Navigation from "./nav";
+import { BASE_URL } from "../config";
+
 
 import '../App.css';
 
@@ -11,7 +12,7 @@ export const ShowTeams = () => {
   const [error, setError] = useState(null);
 
   const fetchTeams = () => {
-	const url = 'https://express-hello-world-ok4t.onrender.com/teams';
+	const url = `${BASE_URL}/teams`;
 		//const url =http://localhost:8000/teams'
     fetch(url)
       .then(response => {
@@ -69,7 +70,7 @@ export const Team = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify()
     };
-	const url = 'https://express-hello-world-ok4t.onrender.com/teams/${teamId}';
+	const url =`${BASE_URL}/teams/${teamId}`;
 
 //    let url= `http://localhost:8000/teams/${teamId}`;
     fetch(url, requestOptions)
@@ -173,7 +174,7 @@ function TeamEvents({ events }) {
 		})
 	  };
 	  
-	  const url = 'https://express-hello-world-ok4t.onrender.com/events/createEvent';
+	  const url = `${BASE_URL}/events/createEvent`;
 	  //let url= "http://localhost:8000/events/createEvent";
 	  fetch(url, requestOptions)
 		.then(response => {
