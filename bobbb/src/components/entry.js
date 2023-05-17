@@ -164,8 +164,10 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			  const url = 'https://express-hello-world-ok4t.onrender.com/signup/try';
+			const url = 'https://express-hello-world-ok4t.onrender.com/signup/try';
 		//const url = 'http://localhost:8000/signup/try'
+		//app.post("/signup/try", async (req, res) => {
+
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },

@@ -69,7 +69,9 @@ export const Team = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify()
     };
-    let url= `http://localhost:8000/teams/${teamId}`;
+	const url = 'https://express-hello-world-ok4t.onrender.com/teams/${teamId}';
+
+//    let url= `http://localhost:8000/teams/${teamId}`;
     fetch(url, requestOptions)
       .then(response => {
         if (!response.ok) {
@@ -170,7 +172,8 @@ function TeamEvents({ events }) {
 		  teamId: teamId
 		})
 	  };
-	  const url = 'https://express-hello-world-ok4t.onrender.com/teams/createEvent';
+	  
+	  const url = 'https://express-hello-world-ok4t.onrender.com/events/createEvent';
 	  //let url= "http://localhost:8000/events/createEvent";
 	  fetch(url, requestOptions)
 		.then(response => {
