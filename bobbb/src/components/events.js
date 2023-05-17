@@ -159,11 +159,11 @@ export const Event = () => {
 		<div className="my-Events">
 			<li>{"event id----"+event.id}</li>
 			<li>{"event name----"+event.name}</li>
-			<li>{"event password----"+event.time}</li>
-			<li>{"event members----"+event.place}</li><br/><br/>
-			<li>{"event events----"+event.info}</li><br/><br/>	
-			<button onClick={addToCallander}>add event to calendar</button><br/><br/><br/>
-
+			<li>{"event time----"+event.time}</li>
+			<li>{"event place----"+event.place}</li><br/><br/>
+			<li>{"event info ----"+event.info}</li><br/><br/>	
+			{{//<button onClick={addToCallander}>add event to calendar</button><br/><br/><br/>
+			}}
 			{event && event.members && event.members.map(member => (
 					<div style={{"background":"lightgreen"}} key={member.username}>
 						<p>{"username: " + member.username+"------"}		
