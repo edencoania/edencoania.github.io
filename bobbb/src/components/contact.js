@@ -22,36 +22,21 @@ function Contact() {
         Last Name: Coania
       </p>
       <p>
-        <ResumeDownloader/>
+        <FileDownloader/>
       </p>
     </div>
   );
 }
 
-const ResumeDownloader = () => {
-  const handleDownload = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/download`, {
-        responseType: 'blob', // Set the response type to 'blob' to receive the file as a Blob object
-      });
-
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'resume.pdf');
-      document.body.appendChild(link);
-      link.click();
-    } catch (error) {
-      console.error('Error downloading resume:', error);
-    }
+const FileDownloader = () => {
+  const handleDownload = () => {
+    window.open(`${BASE_URL}/download`, '_blank');
   };
 
   return (
     <div>
-      <button onClick={handleDownload}>Download Resume</button>
+      <button onClick={handleDownload}>Download File</button>
     </div>
   );
 };
-
-
 export default Contact;
