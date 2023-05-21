@@ -1,15 +1,14 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import '../App.css';
 import Navigation from "./nav";
 import { BASE_URL } from "../config";
 
-const ShowUsers = () => 
+/*const ShowUsers = () => 
 {
   const [users, setUsers] = useState([])
   const fetchUsers = () => {
 	const url = `${BASE_URL}/users`;
-	  //const url ='http://localhost:8000/users'
 	fetch(url)
 	.then(response => response.json())
 	.then(data => {setUsers(data.user);
@@ -51,7 +50,7 @@ const listStyle = {
   )
 }
 
-
+*/
 export const User = () => {
 	const [user, setUser] = useState([])
 	let { userId } = useParams();
@@ -65,7 +64,6 @@ export const User = () => {
 			'Authorization': 'Bearer ' + token},
 			};
 			const url = `${BASE_URL}/users/`+storedUserId;
-	  //let url= 'http://localhost:8000/users/'+storedUserId;
 			console.log(url);
 			console.log(url);
 			console.log(url);
@@ -80,11 +78,7 @@ export const User = () => {
 	}
   
 	useEffect(() => {
-		fetchUser();	}, [])
-	
-  const listStyle = {
-	  listStyle: 'none'
-	};
+		fetchUser();	},[])
 
 
   if (storedUserId !== userId) {
@@ -151,11 +145,10 @@ const JoinTeam = (props)=>
 			  body: JSON.stringify({ teamPassword: teamPassword, userName: userName, userId: userId })
 			  };
 			  const url = `${BASE_URL}/teams/join`;
-			  //let url= "http://localhost:8000/teams/join";
 		  fetch(url, requestOptions)
 		  .then(response => response.json())
 		  .then(data => {
-			  if (data.message=="team joined") {
+			  if (data.message==="team joined") {
 				  setshowJoinExiting(false);
 				  props.fetchUser();
 			  }
@@ -203,7 +196,6 @@ const CreateTeam = (props)=>
 				body: JSON.stringify({ teamName: newTeam, userName: userName, userId: userId })
 			};
 			const url = `${BASE_URL}/teams/createTeam`;
-			  //let url= "http://localhost:8000/teams/createTeam";
 			fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(data => {
@@ -248,7 +240,6 @@ const AddFriend = (props)=>
 				body: JSON.stringify({ friendUserName: friendUserName, userName: userName, userId: userId })
 			};
 			const url = `${BASE_URL}/users/addFriend`;
-			  //let url= "http://localhost:8000/users/addFriend";
 			fetch(url, requestOptions)
 			.then(response => {
 				console.log(response);
@@ -256,7 +247,7 @@ const AddFriend = (props)=>
 				
 			}).then(data => {
 				console.log(data);
-				if (data.message == "friend added") {
+				if (data.message === "friend added") {
 					setShow(false);
 					props.fetchUser();	
 				}
@@ -299,12 +290,11 @@ const ShowTeam = (props) => {
 		body: JSON.stringify({ teamId: teamId, userId: userId})
 		};
 		const url = `${BASE_URL}/teams/deleteUser`;
-		//let url= "http://localhost:8000/teams/deleteUser";
 	fetch(url, requestOptions)
 	.then(response => response.json())
 	.then(data => {
 		console.log(data)
-		if (data.message == "team deleted") {
+		if (data.message === "team deleted") {
 			fetchUser();	
 		}
 		else{
@@ -328,7 +318,7 @@ const ShowTeam = (props) => {
 			setUserId(localStorage.getItem('userId'));
 			setTeams(data);
 		  });
-		})
+		},[])
 
   function goToTeams(teamId)
   {
@@ -370,24 +360,29 @@ const ShowArray = (props) => {
 		  </ul>
 		)
 }
-
 const ShowEvents = (props) => {
 	const navigate = useNavigate();
-
-	function goToEvents(eventId)
-	{
-	  navigate('/events/' +eventId);
+  
+	function goToEvent(eventId) {
+	  navigate(`/events/${eventId}`);
 	}
-	const {data} = props;
+  
+	const { data } = props;
+  
 	if (!data || !Array.isArray(data)) {
-		return null;
-	  }
-		return (
-			<ul>
-			{data.map((item, index) => (
-			  <li onClick={()=>goToEvents(item)} key={index}>{item}</li>
-			))}
-		  </ul>
-		)
-}
+	  return null;
+	}
+  
+	return (
+	  <ul>
+		{data.map((eventId, index) => (
+		  <li onClick={() => goToEvent(eventId)} key={index}>
+			Event ID: {eventId}
+		  </li>
+		))}
+	  </ul>
+	);
+  };
+  
+
 export default ShowTeam

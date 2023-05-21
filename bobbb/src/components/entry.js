@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React from "react";
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import Navigation from "./nav";
@@ -15,19 +13,21 @@ function MannageEntry()
 	const navigate = useNavigate();
 
 	useEffect(() => {
+
         if(userStatus !== "Login" && userStatus !== "Signup") {
             localStorage.setItem('isLoggedIn', 'true');
 			//localStorage.setItem('tokken', tokken);
             localStorage.setItem('userId',userStatus.id );
             localStorage.setItem('userName',userStatus.username );
             navigate(`/users/${userStatus.id}`);
+
         }
     }, [userStatus]);
+
 	let show;
 	function handle()
 	{
 		const url = `${BASE_URL}/users/log`;
-		//const url = 'https://localhost:8000/users/log';
 
 		const requestOptions = {
 			method: 'GET',
@@ -96,7 +96,6 @@ function Login({funcsetUserStatus})
 		const { userName, password } = event.target.elements;
 		const data = { "userName": userName.value, "password": password.value };
 		const url = `${BASE_URL}/login/try`;
-		//const url = 'http://localhost:8000/login/try'
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -104,7 +103,7 @@ function Login({funcsetUserStatus})
 		};
 		fetch(url, requestOptions)
 			.then(response => response.json()).then(data => {
-				if (data.message === "Login successful") {
+				if (data.message == "Login successful") {
 					funcsetUserStatus({
 					   "id": data.user.id,
 					   "username": data.user.userName
@@ -166,7 +165,6 @@ function Signup({funcsetUserStatus})
 				return;
 			  }
 			const url = `${BASE_URL}/signup/try`;
-		//const url = 'http://localhost:8000/signup/try'
 		//app.post("/signup/try", async (req, res) => {
 
 			const requestOptions = {

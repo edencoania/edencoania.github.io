@@ -13,7 +13,6 @@ export const ShowTeams = () => {
 
   const fetchTeams = () => {
 	const url = `${BASE_URL}/teams`;
-		//const url =http://localhost:8000/teams'
     fetch(url)
       .then(response => {
         if (!response.ok) {
@@ -33,7 +32,7 @@ export const ShowTeams = () => {
 
   useEffect(() => {
     fetchTeams();
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -72,7 +71,6 @@ export const Team = () => {
     };
 	const url =`${BASE_URL}/teams/${teamId}`;
 
-//    let url= `http://localhost:8000/teams/${teamId}`;
     fetch(url, requestOptions)
       .then(response => {
         if (!response.ok) {
@@ -92,7 +90,7 @@ export const Team = () => {
 
   useEffect(() => {
     fetchTeam();
-  }, [])
+  },[])
 
 
   return (
@@ -175,7 +173,6 @@ function TeamEvents({ events }) {
 	  };
 	  
 	  const url = `${BASE_URL}/events/createEvent`;
-	  //let url= "http://localhost:8000/events/createEvent";
 	  fetch(url, requestOptions)
 		.then(response => {
 		  if (!response.ok) {

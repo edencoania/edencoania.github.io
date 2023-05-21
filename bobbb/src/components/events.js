@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../App.css';
 import { BASE_URL } from "../config";
 
@@ -71,7 +71,6 @@ export const Event = () => {
 		};
 		
 		const url = `${BASE_URL}/events/${eventId}`;
-		//let url= `http://localhost:8000/events/${eventId}`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
@@ -105,14 +104,13 @@ export const Event = () => {
 		};
 		
 		const url = `${BASE_URL}/events/RSVP`;
-		//let url= `http://localhost:8000/events/RSVP`;
 		//console.log(url);
 		
 		fetch(url, requestOptions)
 		.then(response => response.json())
 		.then(data => {
 			//console.log(data.team);
-				if(data.message == "event approved")
+				if(data.message === "event approved")
 				{
 					fetchEvent();
 				}
@@ -120,64 +118,40 @@ export const Event = () => {
 		
 		.catch(error => console.error(error));
 	}
-	const addToCallander = () => 
-	{
-		//console.log(teamId)
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ userName: storedUserName, eventId: eventId, userId: storedUserId })
-		};
-		
-		
-		const url = `${BASE_URL}/events/addToCallander`;
-		//let url= `http://localhost:8000/events/addToCallander`;
-		//console.log(url);
-		
-		fetch(url, requestOptions)
-		.then(response => response.json())
-		.then(data => {
-			//console.log(data.team);
-				if(data.message == "event approved")
-				{
-					fetchEvent();
-				}
-			  })
-		
-		.catch(error => console.error(error));
-	}
+
 	useEffect(() => {
 		fetchEvent();	
 		//console.log(team);
-	}, [])
-	
-  const listStyle = {
-	  listStyle: 'none'
-	};
+	},[])
 
-	if (show) {return (
-		<div className="my-Events">
-			<li>{"event id----"+event.id}</li>
-			<li>{"event name----"+event.name}</li>
-			<li>{"event time----"+event.time}</li>
-			<li>{"event place----"+event.place}</li><br/><br/>
-			<li>{"event info ----"+event.info}</li><br/><br/>	
-			{{//<button onClick={addToCallander}>add event to calendar</button><br/><br/><br/>
-			}}
-			{event && event.members && event.members.map(member => (
-					<div style={{"background":"lightgreen"}} key={member.username}>
-						<p>{"username: " + member.username+"------"}		
-						{member.status}</p>
-						{member.username == storedUserName && member.status == "invited" ? (
-      				      <button onClick={approveEvent}>approve event</button>
-      					  ) : null}
-					</div>
-				))}
-		</div>
-		)}
-		
-		else{
-			return <h1>you are not invited to this Event </h1>
-		}
+	if (show) {
+		return (
+		  <div className="my-Events">
+			<ul>
+			  <li>{"event id----" + event.id}</li>
+			  <li>{"event name----" + event.name}</li>
+			  <li>{"event time----" + event.time}</li>
+			  <li>{"event place----" + event.place}</li>
+			  <li>{"event info ----" + event.info}</li>
+			
+			  {event && event.members && event.members.map(member => (
+					<div key={member.username}>
+					
+				  		{"username: " + member.username + "------"}
+				  		{JSON.stringify(member.status)}
+				  	
+				  {member.username === storedUserName && member.status === "invited" ? (
+					<button onClick={approveEvent}>approve event</button>
+				  ) : null}
+				  
+				</div>
+			  ))}
+			</ul>
+		  </div>
+		);
+	  } else {
+		return <h1>You are not invited to this event.</h1>;
+	  }
+	  
 }
  

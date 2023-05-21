@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { Route, Routes,useParams} from 'react-router';
-import {BrowserRouter} from 'react-router-dom';
+import { Route, Routes} from 'react-router';
+import {HashRouter} from 'react-router-dom';
 import {MannageEntry} from './components/entry';
 import ShowUsers from './components/users';
 import {ShowTeams,Team} from './components/teams';
 import { ShowEvents,Event } from './components/events';
 import { User } from './components/users';
 import About from './components/about';
-import Navigation from './components/nav';
 import './App.css';
 import Contact from './components/contact';
 
@@ -15,7 +13,7 @@ import Contact from './components/contact';
 function App() {
   return (
     <div className='App'>
-    <BrowserRouter>
+    <HashRouter>
   <Routes >
     <Route path="/" element={<MannageEntry />} />
     <Route path="/users" element={<ShowUsers />} />
@@ -27,7 +25,7 @@ function App() {
     <Route path="/about" element={<About/>}/>
     <Route path="/contact" element={<Contact/>}/>
   </Routes>
-</BrowserRouter>
+</HashRouter>
 
 </div>
   );
