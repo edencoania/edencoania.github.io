@@ -1,5 +1,7 @@
 import React from 'react';
 import Navigation from './nav';
+import { BASE_URL } from '../config';
+import axios from 'axios';
 
 function Contact() {
   return (
@@ -20,10 +22,36 @@ function Contact() {
         Last Name: Coania
       </p>
       <p>
-        <a href="file:///C:/Users/eran1/Downloads/Eden's%20Resume.pdf" download>Download Resume</a>
+        <ResumeDownloader/>
       </p>
     </div>
   );
 }
+
+const ResumeDownloader = () => {
+  const handleDownload = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/download`, {
+        responseType: 'blob', // Set the response type to 'blob' to receive the file as a Blob object
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'resume.pdf');
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={handleDownload}>Download Resume</button>
+    </div>
+  );
+};
+
 
 export default Contact;
