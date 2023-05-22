@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom';
 import '../App.css';
 import { BASE_URL } from "../config";
+import { format } from 'date-fns';
 
 export const ShowEvents = () => {
 		const [events, setEvents] = useState([]);
@@ -130,7 +131,8 @@ export const Event = () => {
 			<ul>
 			  <li>{"event id----" + event.id}</li>
 			  <li>{"event name----" + event.name}</li>
-			  <li>{"event time----" + event.time}</li>
+			  <EventTime time={event.time} />
+
 			  <li>{"event place----" + event.place}</li>
 			  <li>{"event info ----" + event.info}</li>
 			
@@ -155,3 +157,8 @@ export const Event = () => {
 	  
 }
  
+const EventTime = ({ time }) => {
+	const formattedTime = format(new Date(time), 'MMMM d, yyyy h:mm a');
+  
+	return <p className="event-time">{formattedTime}</p>;
+  };

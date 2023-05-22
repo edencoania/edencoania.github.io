@@ -25,21 +25,7 @@ function MannageEntry()
     }, [userStatus]);
 
 	let show;
-	function handle()
-	{
-		const url = `${BASE_URL}/users/log`;
 
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify()
-		};
-		fetch(url, requestOptions)
-			.then(response => response.json()).then(data => {
-				alert(data.message);
-			})
-			.catch(error => console.log(error))
-	  };
 
 	if(userStatus==="Login")
 	{
@@ -66,7 +52,6 @@ function MannageEntry()
 	}
 	return (<div>
 	<Navigation/>
-	<button  onClick={() =>handle()}> hey </button>
 	{
 		show
 	}
@@ -183,7 +168,8 @@ function Signup({funcsetUserStatus})
 					   "id": data.user.id,
 					   "username": data.user.userName
 								});
-						localStorage.setItem('token', data.token);		
+						localStorage.setItem('token', data.token);	
+						alert("if it is your first time try to join a group with the password 4463")	
 				}
 				else{
 					alert("username already exist");

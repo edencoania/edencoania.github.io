@@ -616,3 +616,8 @@ a {
 .event-details ul li div button:focus {
   outline: none;
 }
+
+.event-time {
+  color: #333;
+  font-weight: bold;
+}

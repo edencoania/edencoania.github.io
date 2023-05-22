@@ -1,7 +1,6 @@
 import React from 'react';
 import Navigation from './nav';
 import { BASE_URL } from '../config';
-import axios from 'axios';
 
 function Contact() {
   return (

@@ -3,6 +3,7 @@ import { useParams,useNavigate } from "react-router-dom";
 import '../App.css';
 import Navigation from "./nav";
 import { BASE_URL } from "../config";
+import axios from 'axios';
 
 /*const ShowUsers = () => 
 {
@@ -64,14 +65,8 @@ export const User = () => {
 			'Authorization': 'Bearer ' + token},
 			};
 			const url = `${BASE_URL}/users/`+storedUserId;
-			console.log(url);
-			console.log(url);
-			console.log(url);
-			console.log(url);
-	console.log(url);
 
-	console.log(url);
-	  fetch(url,requestOptions)
+			fetch(url,requestOptions)
 	  .then(response => response.json())
 	  .then(data => {setUser(data);})
 	  .catch(error => console.error(error));
@@ -115,7 +110,7 @@ const UserData = ({ fetchUser,data }) => {
 		<ShowArray data={myData.friendsId} />
 		<AddFriend fetchUser={fetchUser}/>
 		<p>Teams:</p>
-		<ShowTeam  fetchUser={fetchUser} data={myData.teams}/>
+		<ShowTeam  fetchUser={fetchUser} teamsID={myData.teams}/>
 		<JoinTeam fetchUser={fetchUser}/>
 		<br/><br/>
 		<CreateTeam fetchUser={fetchUser}/>
@@ -274,11 +269,11 @@ return (
 
 
 const ShowTeam = (props) => {
-	const { data, fetchUser } = props;
+	const { teamsID, fetchUser } = props;
 	const [userId, setUserId] = useState([]);
 	const navigate = useNavigate();
 
-	//console.log(data);
+	console.log(teamsID);
 	const [teams, setTeams] = useState([]);
 	function leaveHandler(teamId,userId)
 	{
@@ -305,27 +300,33 @@ const ShowTeam = (props) => {
 	})
 	}
 	useEffect(() => {
-		if (!data) {
-		return;
-		}
-		// Fetch the team data when the component mounts
-		Promise.all(
-			data.map((team) => {
-			  const url = `${BASE_URL}/teams/${team}`;
-			  return fetch(url).then((res) => res.json());
-			})
-		  ).then((data) => {
-			setUserId(localStorage.getItem('userId'));
-			setTeams(data);
-		  });
-		},[])
+	  
+		const fetchedTeams = [];
+		setUserId(localStorage.getItem('userId'));
+
+		const fetchTeams = async () => {
+			try {
+			  for (const teamId of teamsID) {
+				const url = `${BASE_URL}/teams/${teamId}`;
+				const response = await axios.get(url);
+				const team = response.data;
+				fetchedTeams.push(team);
+				console.log(team)
+			  }
+			  setTeams(fetchedTeams);
+			} catch (error) {
+			  console.error('Error fetching teams:', error);
+			}
+		  };
+		  fetchTeams();
+
+	  
+		}, [teamsID]); // Empty dependency array ensures the effect runs only once on component mount	   
 
   function goToTeams(teamId)
   {
 	navigate('/teams/' +teamId);
   }
- 
-
   if (!teams || !Array.isArray(teams)) {
     return null;
   }
@@ -341,7 +342,6 @@ const ShowTeam = (props) => {
 	  </div>
 	  <button onClick={()=>leaveHandler(team.team.id,userId)}> leave group </button>
 	</div>
-	
       ))}
     </div>
   );
@@ -361,28 +361,28 @@ const ShowArray = (props) => {
 		)
 }
 const ShowEvents = (props) => {
-	const navigate = useNavigate();
-  
-	function goToEvent(eventId) {
-	  navigate(`/events/${eventId}`);
-	}
-  
-	const { data } = props;
-  
-	if (!data || !Array.isArray(data)) {
-	  return null;
-	}
-  
-	return (
-	  <ul>
-		{data.map((eventId, index) => (
-		  <li onClick={() => goToEvent(eventId)} key={index}>
-			Event ID: {eventId}
-		  </li>
-		))}
-	  </ul>
-	);
-  };
-  
+  const navigate = useNavigate();
 
-export default ShowTeam
+  function goToEvent(eventId) {
+    navigate(`/events/${eventId}`);
+  }
+
+  const { data } = props;
+
+  if (!data || !Array.isArray(data)) {
+    return null;
+  }
+
+  return (
+    <ul>
+      {data.map((eventId, index) => (
+        <li onClick={() => goToEvent(eventId)} key={index}>
+          Event ID: {eventId}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+
+export default UserData
