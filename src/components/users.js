@@ -147,9 +147,7 @@ const JoinTeam = (props)=>
 				  setshowJoinExiting(false);
 				  props.fetchUser();
 			  }
-			  else{
-				  console.log("data.message")
-  
+			  else{  
 				  alert("username already exist");
 			  }
 		  })
@@ -184,7 +182,6 @@ const CreateTeam = (props)=>
 				alert("can't create name-less Team");
 				return;
 			}
-			console.log(newTeam)
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -228,7 +225,6 @@ const AddFriend = (props)=>
 		{
 			let userId = localStorage.getItem('userId');
 			let userName = localStorage.getItem('userName');
-			console.log(friendUserName + "    " + friendUserName)
 			const requestOptions = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -237,11 +233,9 @@ const AddFriend = (props)=>
 			const url = `${BASE_URL}/users/addFriend`;
 			fetch(url, requestOptions)
 			.then(response => {
-				console.log(response);
 				return response.json()
 				
 			}).then(data => {
-				console.log(data);
 				if (data.message === "friend added") {
 					setShow(false);
 					props.fetchUser();	
@@ -272,14 +266,10 @@ const ShowTeam = (props) => {
 	const { teamsID, fetchUser } = props;
 	const [userId, setUserId] = useState([]);
 	const navigate = useNavigate();
-
-	console.log(teamsID);
 	const [teams, setTeams] = useState([]);
 	function leaveHandler(teamId,userId)
 	{
-	console.log(teamId);
-	console.log(userId);
-	const requestOptions = {
+		const requestOptions = {
 		method: 'DELETE',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ teamId: teamId, userId: userId})
@@ -288,13 +278,10 @@ const ShowTeam = (props) => {
 	fetch(url, requestOptions)
 	.then(response => response.json())
 	.then(data => {
-		console.log(data)
 		if (data.message === "team deleted") {
 			fetchUser();	
 		}
 		else{
-			console.log("data.message");
-
 			alert("username already exist");
 		}
 	})
@@ -311,7 +298,6 @@ const ShowTeam = (props) => {
 				const response = await axios.get(url);
 				const team = response.data;
 				fetchedTeams.push(team);
-				console.log(team)
 			  }
 			  setTeams(fetchedTeams);
 			} catch (error) {

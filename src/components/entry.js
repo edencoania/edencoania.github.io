@@ -161,7 +161,6 @@ function Signup({funcsetUserStatus})
 			.then(response => response.json())
 			.then(data => {
 				console.log('Submitted successfully');
-				console.log(data.user);
 		
 				if (data.message === "signup successful") {
 					funcsetUserStatus({

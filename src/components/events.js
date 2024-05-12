@@ -13,7 +13,6 @@ export const ShowEvents = () => {
 		.then(response => response.json())
 		.then(data => {
 			setEvents(data.event);
-			console.log(data.event);
 		})
 		.catch(error => console.error(error));
 		}
@@ -64,7 +63,6 @@ export const Event = () => {
 
 	const fetchEvent = () => 
 	{
-		//console.log(teamId)
 		const requestOptions = {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
@@ -72,21 +70,14 @@ export const Event = () => {
 		};
 		
 		const url = `${BASE_URL}/events/${eventId}`;
-		//console.log(url);
 		
 		fetch(url, requestOptions)
 		.then(response => response.json())
 		.then(data => {
-			//console.log(data.team);
 			setEvent(data.event);
-			console.log(storedUserName);
-			console.log(data.event.members)
-
 			for (let i = 0; i < data.event.members.length; i++) {
-				console.log(data.event.members)
 				if (data.event.members[i].username === storedUserName) {
 					setShow(true);
-					console.log(show);
 				  break;
 				}
 			  }
@@ -96,8 +87,6 @@ export const Event = () => {
 
 	const approveEvent = () => 
 	{
-
-		//console.log(teamId)
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -105,12 +94,10 @@ export const Event = () => {
 		};
 		
 		const url = `${BASE_URL}/events/RSVP`;
-		//console.log(url);
 		
 		fetch(url, requestOptions)
 		.then(response => response.json())
 		.then(data => {
-			//console.log(data.team);
 				if(data.message === "event approved")
 				{
 					fetchEvent();
@@ -122,7 +109,6 @@ export const Event = () => {
 
 	useEffect(() => {
 		fetchEvent();	
-		//console.log(team);
 	},[])
 
 	if (show) {
