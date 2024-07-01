@@ -5,6 +5,8 @@ import ShowUsers from './components/users';
 import {ShowTeams,Team} from './components/teams';
 import { ShowEvents,Event } from './components/events';
 import { User } from './components/users';
+import { Test } from './components/tests';
+
 import About from './components/about';
 import './App.css';
 import Contact from './components/contact';

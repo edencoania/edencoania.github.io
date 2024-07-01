@@ -22,8 +22,11 @@ else if (process.env.NODE_ENV === 'production') {
 
 // kubernetes settings
 
-const BASE_URL = process.env.NODEJS_BASE_URL;
+const BASE_URL = process.env.BASE_URL ; //|| 'http://localhost:8000';
+
+// Use BASE_URL in your application code
+console.log(BASE_URL)
 
 module.exports = {
-    BASE_URL: BASE_URL || 'http://localhost:8000'
+  BASE_URL,
 };

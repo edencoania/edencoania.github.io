@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import Navigation from "./nav";
 import { useEffect , useState } from "react";
-import { BASE_URL } from "../config";
+//import { BASE_URL } from "../config";
 
 
 
@@ -11,7 +11,12 @@ function MannageEntry()
 {	
 	const [userStatus,setUserStatus] = useState("Login");
 	const navigate = useNavigate();
-
+	const [baseUrl, setBaseUrl] = useState(null); // State to hold the BASE_URL
+	useEffect(() => {
+		const fetchedUrl = process.env.REACT_APP_BASE_URL //|| process.env.BASE_URL; // Try both prefixes
+		setBaseUrl(fetchedUrl);
+	  }, []); // Empty dependency array to run only once on component mount
+	
 	useEffect(() => {
 
         if(userStatus !== "Login" && userStatus !== "Signup") {
@@ -31,12 +36,12 @@ function MannageEntry()
 	{
 		show = <div className="signin">
 			
-			<Login funcsetUserStatus={setUserStatus} />			
+			<Login baseUrl={baseUrl} funcsetUserStatus={setUserStatus} />			
 			</div>
 	}
 	else if(userStatus==="Signup")
 	{
-		show =<Signup   funcsetUserStatus={setUserStatus} />
+		show =<Signup  baseUrl={baseUrl} funcsetUserStatus={setUserStatus} />
 	}
 	else
 	{
@@ -59,7 +64,7 @@ function MannageEntry()
 }
 
 
-function Login({funcsetUserStatus})
+function Login({baseUrl,funcsetUserStatus})
 {
 	function setToSignup(funcsetUserStatus)
 	{
@@ -80,7 +85,10 @@ function Login({funcsetUserStatus})
 		
 		const { userName, password } = event.target.elements;
 		const data = { "userName": userName.value, "password": password.value };
-		const url = `${BASE_URL}/login/try`;
+		const url = `${baseUrl}/login/try`;
+		console.log(baseUrl)
+		console.log("process.env.baseUrl")
+
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -88,7 +96,7 @@ function Login({funcsetUserStatus})
 		};
 		fetch(url, requestOptions)
 			.then(response => response.json()).then(data => {
-				if (data.message == "Login successful") {
+				if (data.message === "Login successful") {
 					funcsetUserStatus({
 					   "id": data.user.id,
 					   "username": data.user.userName
@@ -122,7 +130,7 @@ function Login({funcsetUserStatus})
 	</div>
 }
 
-function Signup({funcsetUserStatus})
+function Signup({baseUrl,funcsetUserStatus})
 {
 	function setToLogin(funcsetUserStatus)
 	{
@@ -149,7 +157,7 @@ function Signup({funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = `${BASE_URL}/signup/try`;
+			const url = `${process.env.BASE_URL}/signup/try`;
 		//app.post("/signup/try", async (req, res) => {
 
 			const requestOptions = {
