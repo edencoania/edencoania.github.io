@@ -22,7 +22,7 @@ else if (process.env.NODE_ENV === 'production') {
 
 // kubernetes settings
 
-const BASE_URL = process.env.BASE_URL ; //|| 'http://localhost:8000';
+const BASE_URL = process.env.BASE_URL || "https://express-hello-world-ok4t.onrender.com" ; //|| 'http://localhost:8000';
 
 // Use BASE_URL in your application code
 console.log(BASE_URL)

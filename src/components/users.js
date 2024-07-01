@@ -107,17 +107,17 @@ const UserData = ({ fetchUser,data }) => {
 		<p>Username: {data.userName}</p>
 		<p>Password: {data.password}</p>
 		<p>Friends ID:</p>
-		<ShowArray data={myData.friendsId} />
+		<ShowArray data={myData.friendsId|| []} />
 		<AddFriend fetchUser={fetchUser}/>
 		<p>Teams:</p>
-		<ShowTeam  fetchUser={fetchUser} teamsID={myData.teams}/>
+		<ShowTeam  fetchUser={fetchUser} teamsID={myData.teams|| []}/>
 		<JoinTeam fetchUser={fetchUser}/>
 		<br/><br/>
 		<CreateTeam fetchUser={fetchUser}/>
 		<p>Invited Events:</p>
-		<ShowEvents data={myData.invitedEvents} />
+		<ShowEvents data={myData.invitedEvents|| []} />
 		<p>Approved Events:</p>
-		<ShowEvents data={myData.approvedEvents} /> <br/><br/>
+		<ShowEvents data={myData.approvedEvents|| []} /> <br/><br/>
 		</div>
 	);};
 

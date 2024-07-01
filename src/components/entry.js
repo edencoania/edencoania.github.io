@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import Navigation from "./nav";
 import { useEffect , useState } from "react";
-//import { BASE_URL } from "../config";
+import { BASE_URL } from "../config";
 
 
 
@@ -11,11 +11,11 @@ function MannageEntry()
 {	
 	const [userStatus,setUserStatus] = useState("Login");
 	const navigate = useNavigate();
-	const [baseUrl, setBaseUrl] = useState(null); // State to hold the BASE_URL
-	useEffect(() => {
-		const fetchedUrl = process.env.REACT_APP_BASE_URL //|| process.env.BASE_URL; // Try both prefixes
-		setBaseUrl(fetchedUrl);
-	  }, []); // Empty dependency array to run only once on component mount
+	//const [baseUrl, setBaseUrl] = useState(null); // State to hold the BASE_URL
+	//useEffect(() => {
+		//const fetchedUrl = BASE_URL //|| process.env.BASE_URL; // Try both prefixes
+		//setBaseUrl(fetchedUrl);
+	//  }, []); // Empty dependency array to run only once on component mount
 	
 	useEffect(() => {
 
@@ -36,12 +36,12 @@ function MannageEntry()
 	{
 		show = <div className="signin">
 			
-			<Login baseUrl={baseUrl} funcsetUserStatus={setUserStatus} />			
+			<Login baseUrl={BASE_URL} funcsetUserStatus={setUserStatus} />			
 			</div>
 	}
 	else if(userStatus==="Signup")
 	{
-		show =<Signup  baseUrl={baseUrl} funcsetUserStatus={setUserStatus} />
+		show =<Signup  baseUrl={BASE_URL} funcsetUserStatus={setUserStatus} />
 	}
 	else
 	{
@@ -70,8 +70,8 @@ function Login({baseUrl,funcsetUserStatus})
 	{
 		funcsetUserStatus("Signup");
 	}
-	const [userName, setUserName] = useState();
-	const [password, setPassword] = useState();
+	const [userName, setUserName] = useState('');
+	const [password, setPassword] = useState('');
 
 	const handleChangeUserName = (event) => {
 		setUserName(event.target.value)
@@ -136,16 +136,16 @@ function Signup({baseUrl,funcsetUserStatus})
 	{
 		funcsetUserStatus("Login");
 	}
-	const [Name, setName] = useState();
+	const [Name, setName] = useState('');
 	const handleChangeName = (event) => {
 		setName(event.target.value)
 	  }
-	  const [userName, setUserName] = useState("");
+	  const [userName, setUserName] = useState('');
 
 	const handleChangeUserName = (event) => {
 		setUserName(event.target.value)
 	  }
-	  const [password, setPassword] = useState();
+	  const [password, setPassword] = useState('');
 	  const handleChangePassword = (event) => {
 		  setPassword(event.target.value)
 		}
@@ -157,7 +157,7 @@ function Signup({baseUrl,funcsetUserStatus})
 				alert("Please fill out all the fields");
 				return;
 			  }
-			const url = `${process.env.BASE_URL}/signup/try`;
+			const url = `${baseUrl}/signup/try`;
 		//app.post("/signup/try", async (req, res) => {
 
 			const requestOptions = {
