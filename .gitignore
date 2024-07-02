@@ -1,0 +1,40 @@
+
+!*.json
+!*.md
+
+# Node.js
+node_modules/
+
+# Build output
+build/
+dist/
+out/
+
+# Dependency debugging
+npm-debug.log
+yarn-debug.log
+
+# Testing frameworks
+coverage/
+
+# IDE or text editor specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Environment specific files
+.env
+.env.development
+.env.test
+.env.production
+
+# Temporary files
+*.tmp
+*.log
+
+# Compiled TypeScript files
+*.js
+*.jsx
+*.ts
+*.tsx

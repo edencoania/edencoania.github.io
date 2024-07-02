@@ -1,0 +1,49 @@
+# Ignore node_modules directory (dependencies will be installed separately)
+node_modules
+
+# Ignore development/build dependencies
+build
+dist
+tmp
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore yarn integrity file
+.yarn-integrity
+
+# Ignore editor-specific files
+.vscode
+*.swp
+
+# Ignore unit test coverage reports
+coverage
+
+# Ignore miscellaneous files
+*.log
+*.bak
+*.iml
+.idea
+*.pid
+*.seed
+*.pid.lock
+*.log
+*.yml
+*.out
+*.nyc_output
+.nyc_output/
+.cache
+.cache/
+.next
+.idea/
+# Ignore Docker specific files
+.dockerignore
+.dockerignore~
+docker-compose.override.yml
+docker-compose.yml
+dockerfile
